@@ -1,5 +1,6 @@
 import React from 'react';
 import InputField from '../components/InputField/InputField';
+import CurrentWeather from '../components/CurrentWeather/CurrentWeather';
 import Header from '../components/Header/Header';
 
 function Home() {
@@ -7,6 +8,7 @@ function Home() {
         <>
             <Header />
             <InputField />
+            <CurrentWeather/>
         </>
     )
 }

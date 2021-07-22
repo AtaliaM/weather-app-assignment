@@ -1,16 +1,22 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { connect } from 'react-redux';
 import weather from '../../apis/weather';
+import { chooseCity } from '../../actions';
 import './InputField.css';
 
-function InputField() {
+function InputField(props) {
 
     const [term, setTerm] = useState("");
 
     const onTermSubmit = async() => {
         try {
-            const res = await weather.get(`?query=${term}`);
+            const res = await weather.get(`search/?query=${term}`);
             console.log(res)
+            //if term returns one city- pass the city to our action creator 'chooseCity',
+            //if there are user typos, check for match within cities dataset,
+            //if multiple cities returned, 
+            props.chooseCity(res.data[0])
         } catch(e) {
             console.log(e);
         }
@@ -26,4 +32,14 @@ function InputField() {
     )
 }
 
-export default InputField;
+const mapStateToProps = (state) => {
+    console.log(state)
+    return( {
+        chosenCity: state.chosenCity,
+        cities: state.cities
+    })
+}
+
+export default connect(mapStateToProps, {
+    chooseCity
+})(InputField);
