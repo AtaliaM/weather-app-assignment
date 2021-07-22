@@ -1,0 +1,23 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 8rem;
+    margin: 15px;
+}
+
+.app-name {
+    color: #206675;
+    font-size: 2.6rem;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.header-btn-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    color: #206675;
+    font-size: 2.4rem;
+}
