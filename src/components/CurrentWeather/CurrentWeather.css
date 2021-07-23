@@ -14,6 +14,7 @@
 .weather-details-container {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .left-box {
@@ -21,7 +22,7 @@
     flex-direction: column;
     align-items: center;
     margin: 20px;
-    width: 20rem;
+    width: 15rem;
 }
 
 .right-box {
