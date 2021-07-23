@@ -1,6 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: `https://www.metaweather.com/api/location/`,
-
+    baseURL: `https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/`,
   });

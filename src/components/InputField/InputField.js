@@ -12,7 +12,7 @@ function InputField(props) {
     const onTermSubmit = async() => {
         try {
             const res = await weather.get(`search/?query=${term}`);
-            console.log(res)
+            console.log(res.data)
             //if term returns one city- pass the city to our action creator 'chooseCity',
             //if there are user typos, check for match within cities dataset,
             //if multiple cities returned, 

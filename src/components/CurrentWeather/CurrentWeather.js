@@ -8,21 +8,11 @@ import './CurrentWeather.css'
 
 function CurrentWeather(props) {
 
-    // const [currentWeather, setCurrentWeather] = useState(null);
-
     useEffect(() => {
         const fetchCurrentWeather = async () => {
             try {
                 const res = await weather.get(`/${props.chosenCity.woeid}`);
-                // const data = {
-                //     min_temp: res.data.consolidated_weather[0].min_temp,
-                //     max_temp: res.data.consolidated_weather[0].max_temp,
-                //     weather_state: res.data.consolidated_weather[0].weather_state_name,
-                //     weather_state_abbr: res.data.consolidated_weather[0].weather_state_abbr,
-                //     humidity: res.data.consolidated_weather[0].humidity
-                // }
                 props.fetchWeather(res.data.consolidated_weather.slice(0,4))
-                // setCurrentWeather(data);
 
             } catch (e) {
                 console.log(e);
@@ -33,28 +23,28 @@ function CurrentWeather(props) {
             fetchCurrentWeather();
         }
 
-    }, [props.chosenCity,props]);
+    }, [props.chosenCity]);
 
     console.log(props)
 
     return (
         <>
-        {props.chosenCity !== null ?
+        {props.weatherForecast !== null ?
         <div className="ui segment curr-weather-container">
             <div className="curr-weather-h-container">
                 <h5 className="curr-weather-h5">Current Weather</h5>
             </div>
             <div className="weather-details-container">
                 <div className="left-box">
-                    <h4 className="city-name">London</h4>
-                    <img className="weather-img" alt="weather-svg" src={weatherIcons(temp.weather_state_abbr)} />
-                    <h4 className="weather-state">{temp.weather_state_name}</h4>
+                    <h4 className="city-name">{props.chosenCity.title}</h4>
+                    <img className="weather-img" alt="weather-svg" src={weatherIcons(props.weatherForecast[0].weather_state_abbr)} />
+                    <h4 className="weather-state">{props.weatherForecast[0].weather_state_name}</h4>
                 </div>
                 <div className="right-box">
-                    <h4 className="detail">Min temp: {Math.round(temp.min_temp)}<sup>°</sup></h4>
-                    <h4 className="detail">Max temp: {Math.round(temp.max_temp)}<sup>°</sup></h4>
-                    <h4 className="detail">Avg temp: {calculateAverageTemp(Math.round(temp.min_temp),Math.round(temp.max_temp))}<sup>°</sup> </h4>
-                    <h4 className="detail">Humidity: {temp.humidity}%</h4>
+                    <h4 className="detail">Min temp: {Math.round(props.weatherForecast[0].min_temp)}<sup>°</sup></h4>
+                    <h4 className="detail">Max temp: {Math.round(props.weatherForecast[0].max_temp)}<sup>°</sup></h4>
+                    <h4 className="detail">Avg temp: {calculateAverageTemp(Math.round(props.weatherForecast[0].min_temp),Math.round(props.weatherForecast[0].max_temp))}<sup>°</sup> </h4>
+                    <h4 className="detail">Humidity: {props.weatherForecast[0].humidity}%</h4>
                 </div>
             </div>
         </div>
@@ -64,19 +54,18 @@ function CurrentWeather(props) {
 }
 
 const mapStateToProps = (state) => {
-    return { chosenCity: state.chosenCity }
-}
-
-
-const temp = {
-    "weather_state_name": "Clear",
-    "weather_state_abbr": "c",
-    "min_temp": 17.785,
-    "max_temp": 28.685000000000002,
-    "humidity": 54,
-
+    return { chosenCity: state.chosenCity, weatherForecast: state.weatherForecast }
 }
 
 export default connect(mapStateToProps, {
     fetchWeather
 })(CurrentWeather);
+
+// const temp = {
+//     "weather_state_name": "Clear",
+//     "weather_state_abbr": "c",
+//     "min_temp": 17.785,
+//     "max_temp": 28.685000000000002,
+//     "humidity": 54,
+
+// }
