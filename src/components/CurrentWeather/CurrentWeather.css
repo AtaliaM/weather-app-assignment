@@ -73,5 +73,6 @@ h4.city-name {
     h4.detail {
         margin: 5px;
         padding: 5px;
+        font-size: 1.1rem;
     }
 }
