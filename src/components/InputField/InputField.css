@@ -12,3 +12,13 @@
     border-top-right-radius: 15px;
 }
 
+@media only screen and (max-width: 768px) { 
+    .ui.fluid.action.input {
+        display: flex;
+    }
+
+    .input-container {
+        margin: auto;
+    }
+}
+

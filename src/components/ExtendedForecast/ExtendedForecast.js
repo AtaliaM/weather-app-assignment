@@ -11,15 +11,15 @@ function ExtendedForecast(props) {
         return (
             temp.map((day) => {
                 return (
-                    <div className="day">
+                    <div className="day" key={day.applicable_date}>
                         <h4 className="detail day-name">{returnWeekDay(day.applicable_date)}</h4>
                         <div className="s-weather-img-container">
                             <img className="s-weather-img" alt="weather-svg" src={weatherIcons(day.weather_state_abbr)}/>
                         </div>
                         <h4 className="weather-state smaller">{day.weather_state_name}</h4>
-                        <h4 className="detail smaller">{Math.round(day.min_temp)}<sup>°</sup>/{Math.round(day.max_temp)}<sup>°</sup></h4>
-                        <h4 className="detail smaller">Avg temp: {calculateAverageTemp(Math.round(day.min_temp), Math.round(day.max_temp))}<sup>°</sup> </h4>
-                        <h4 className="detail smaller">Humidity: {day.humidity}%</h4>
+                        <h4 className="s-detail ">{Math.round(day.min_temp)}<sup>°</sup>/{Math.round(day.max_temp)}<sup>°</sup></h4>
+                        <h4 className="s-detail ">Avg temp: {calculateAverageTemp(Math.round(day.min_temp), Math.round(day.max_temp))}<sup>°</sup> </h4>
+                        <h4 className="s-detail ">Humidity: {day.humidity}%</h4>
                     </div>
                 )
             })

@@ -59,3 +59,16 @@ h4.city-name {
     width: 100px;
     margin: 10px;
 }
+
+@media only screen and (max-width: 768px) {
+    .segment.curr-weather-container {
+        width: 60%;
+        margin:15px auto;
+        padding: 1.2rem 1.5rem;
+    }
+
+    .h4.detail {
+        margin: 5px;
+
+    }
+}

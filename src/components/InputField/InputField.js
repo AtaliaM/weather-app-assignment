@@ -22,10 +22,16 @@ function InputField(props) {
         }
     }
 
+    const onKeySubmit = (e) => {
+        if(e.key === 'Enter'){
+           onTermSubmit();
+          }
+    }
+
     return (
         <div className="input-container">
             <div className="ui fluid action input">
-                <input type="text" placeholder="Search City" onChange={(e)=>setTerm(e.target.value)}/>
+                <input type="text" placeholder="Search City" onKeyPress={(e)=>onKeySubmit(e)} onChange={(e)=>setTerm(e.target.value)}/>
                 <button className="ui button searchbtn" onClick={()=>onTermSubmit()}>Search</button>
             </div>
         </div>

@@ -45,3 +45,19 @@ h4.s-detail {
 h4.smaller {
     font-size: 1.2rem;
 }
+
+@media only screen and (max-width: 768px) {
+    .segment.extended-weather-container {
+        width: 60%;
+        margin:15px auto;
+        padding: 1.2rem 1.5rem;
+    }
+
+    .extended-weather-details-container {
+        flex-direction: column;
+    }
+
+    .day {
+        padding: 10px;
+    }
+}
