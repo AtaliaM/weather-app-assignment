@@ -3,6 +3,8 @@
     padding: 1.5rem 2rem;
     display: flex;
     flex-direction: column;
+    margin: 15px auto;
+    width: 70vw;
     /* align-items: center; */
 }
 
@@ -48,9 +50,9 @@ h4.smaller {
 
 @media only screen and (max-width: 768px) {
     .segment.extended-weather-container {
-        width: 60%;
         margin:15px auto;
-        padding: 1.2rem 1.5rem;
+        padding: 1.1rem 1.2rem;
+        width: 80vw;
     }
 
     .extended-weather-details-container {
