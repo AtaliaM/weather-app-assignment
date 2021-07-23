@@ -22,10 +22,11 @@ function CurrentWeather(props) {
         if (props.chosenCity) {
             fetchCurrentWeather();
         }
+        
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.chosenCity]);
 
-    console.log(props)
 
     return (
         <>
