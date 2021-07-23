@@ -4,3 +4,10 @@ export const chooseCity = (city) => {
         payload: city
     }
 }
+
+export const fetchWeather = (weather) => {
+    return {
+        type: 'WEATHER_FETCHED',
+        payload: weather
+    }
+}

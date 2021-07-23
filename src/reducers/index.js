@@ -19,7 +19,15 @@ const chosenCityReducer = (chosenCity = null, action) => {
     return chosenCity
 }
 
+const chosenCityWeatherReducer = (weather=null, action) => {
+    if(action.type === 'WEATHER_FETCHED') {
+        return action.payload;
+    }
+    return weather
+}
+
 export default combineReducers({
     cities: citiesReducer,
-    chosenCity: chosenCityReducer
+    chosenCity: chosenCityReducer,
+    weatherForecast: chosenCityWeatherReducer
 })

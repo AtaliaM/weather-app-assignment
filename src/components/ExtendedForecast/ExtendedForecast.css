@@ -1,0 +1,47 @@
+.segment.extended-weather-container {
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.extended-weather-details-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.extended-weather-h5 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    color: rgb(100, 111, 124);
+}
+
+.s-weather-img-container {
+    display: flex;
+}
+
+.s-weather-img {
+    width: 50px;
+    margin: 5px auto;
+}
+
+h4.s-detail {
+    font-size: 1.1rem;
+    margin: 12px;
+    color: rgb(123, 152, 178);
+    font-family: 'Poppins', sans-serif;
+}
+
+.day {
+    padding: 20px;
+}
+
+.day-name {
+    text-align: center;
+}
+
+h4.smaller {
+    font-size: 1.2rem;
+}
