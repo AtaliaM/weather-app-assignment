@@ -2,3 +2,13 @@
     width: 80vw;
     margin: 10px;
 }
+
+.ui.input>input {
+    border-radius: 15px;
+}
+
+ .searchbtn {
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+

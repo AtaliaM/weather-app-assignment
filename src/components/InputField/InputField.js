@@ -26,7 +26,7 @@ function InputField(props) {
         <div className="input-container">
             <div className="ui fluid action input">
                 <input type="text" placeholder="Search City" onChange={(e)=>setTerm(e.target.value)}/>
-                <button className="ui button" onClick={()=>onTermSubmit()}>Search</button>
+                <button className="ui button searchbtn" onClick={()=>onTermSubmit()}>Search</button>
             </div>
         </div>
     )
