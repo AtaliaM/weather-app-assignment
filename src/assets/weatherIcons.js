@@ -1,36 +1,36 @@
 const returnCurrentWeatherIcon = (weather_state_abbr) => {
-    let baseUrl = "https://www.metaweather.com/"
+    let baseUrl = "https://www.metaweather.com/static/img/weather"
     let icon;
     switch (weather_state_abbr) {
         case "sn":
-          icon = baseUrl+"/static/img/weather/sn.svg";
+          icon = baseUrl+"/sn.svg";
           break;
         case "sl":
-          icon = baseUrl+"/static/img/weather/sl.svg";
+          icon = baseUrl+"/sl.svg";
           break;
         case "h":
-           icon = baseUrl+"/static/img/weather/h.svg";
+           icon = baseUrl+"/h.svg";
           break;
         case "t":
-          icon = baseUrl+"/static/img/weather/t.svg";
+          icon = baseUrl+"/t.svg";
           break;
         case "hr":
-          icon = baseUrl+"/static/img/weather/hr.svg";
+          icon = baseUrl+"/hr.svg";
           break;
         case "lr":
-          icon = baseUrl+"/static/img/weather/lr.svg";
+          icon = baseUrl+"/lr.svg";
           break;
         case "s":
-          icon = baseUrl+"/static/img/weather/s.svg";
+          icon = baseUrl+"/s.svg";
           break;
         case "hc":
-          icon = baseUrl+"/static/img/weather/hc.svg";
+          icon = baseUrl+"/hc.svg";
           break;
         case "lc":
-          icon = baseUrl+"/static/img/weather/lc.svg";
+          icon = baseUrl+"/lc.svg";
           break;
           default:
-              icon = baseUrl+"/static/img/weather/c.svg";
+              icon = baseUrl+"/c.svg";
       }
 
       return icon;
