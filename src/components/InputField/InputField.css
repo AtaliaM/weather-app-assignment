@@ -12,6 +12,10 @@
     border-top-right-radius: 15px;
 }
 
+.no-results-msg {
+    text-align: center;
+}
+
 @media only screen and (max-width: 768px) { 
     .ui.fluid.action.input {
         display: flex;

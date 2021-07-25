@@ -48,6 +48,14 @@ h4.smaller {
     font-size: 1.2rem;
 }
 
+h4.orange {
+    color: rgb(233, 190, 111);
+}
+
+h4.blue {
+    color: #3BC9E6;
+}
+
 @media only screen and (max-width: 768px) {
     .segment.extended-weather-container {
         margin:15px auto;
