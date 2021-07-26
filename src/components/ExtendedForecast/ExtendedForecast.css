@@ -34,6 +34,7 @@ h4.s-detail {
     margin: 12px;
     color: rgb(123, 152, 178);
     font-family: 'Poppins', sans-serif;
+    text-align: center;
 }
 
 .day {
@@ -46,6 +47,8 @@ h4.s-detail {
 
 h4.smaller {
     font-size: 1.2rem;
+    margin: 12px;
+    text-align: center;
 }
 
 h4.orange {

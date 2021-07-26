@@ -1,5 +1,4 @@
 const cities = require("cities-list");
-console.log(cities["new york"]) 
 
 const userInputCheck = (input) => {
     if (!input.length) {
@@ -7,98 +6,108 @@ const userInputCheck = (input) => {
     }
     input = input.toLowerCase().trim().replace(/\s+/g, '').replace(/[^a-zA-Z]/g, '');
     const inputHashMap = returnCharFreqHashmap(input);
-    let closestCityName = null;
-    let closestCityAcurracyLevel = 0;
+    let firstLevelComparisonCities = [];
+    let secondLevelComparisonCities = [];
+    let largestSubstringLen = [0,""];
+    let bestMatches = [];
 
-
+    //first level check//
     for (let city in cities) {
         const tempCity = city.toLowerCase().replace(/\s+/g, '');
         const currentCityHashMap = returnCharFreqHashmap(tempCity);
-        let temp;
 
-        if(tempCity===input) {
+        if (tempCity === input) {
             return city
         }
 
-        const comparisonResult = compareUserinputAndCityName(inputHashMap, currentCityHashMap);
-        if(comparisonResult===5) {
-            console.log(city)
-            return city;
-        }
-        else if(comparisonResult===4) {
-            console.log("almost identical", city)
-            temp = isCurrentAccuracyGreater(closestCityAcurracyLevel, comparisonResult);
-            if(temp) {
-                closestCityName=city;
-            }
-        }
-        else if(comparisonResult===3) {
-            console.log("minor difference", city)
-            temp = isCurrentAccuracyGreater(closestCityAcurracyLevel, comparisonResult);
-            if(temp) {
-                closestCityName=city;
-            }
-        }
-        else if(comparisonResult===2) {
-            console.log("small difference", city)
-            temp = isCurrentAccuracyGreater(closestCityAcurracyLevel, comparisonResult);
-            if(temp) {
-                closestCityName=city;
-            }
+        const firstLevelComparisonResult = firstLevelComparison(inputHashMap, currentCityHashMap);
+        if (firstLevelComparisonResult) {
+            firstLevelComparisonCities.push(tempCity)
         }
     }
-    // console.log(closestCityName)
-    return closestCityName;
+
+    //second level check//
+    for (let i = 0; i < firstLevelComparisonCities.length; i++) {
+        secondLevelComparisonCities.push(secondLevelComparison(firstLevelComparisonCities[i], input))
+    }
+
+    //third level check//
+    for(let i=0; i<secondLevelComparisonCities.length; i++) {
+        if(secondLevelComparisonCities[i][1].length > largestSubstringLen[0]) {
+            largestSubstringLen[0] = secondLevelComparisonCities[i][1].length;
+            largestSubstringLen[1] = secondLevelComparisonCities[i][0];
+            bestMatches.length = 0;
+            bestMatches.push(secondLevelComparisonCities[i][0]);
+        }
+        else if(secondLevelComparisonCities[i][1].length===largestSubstringLen[0]) {
+            bestMatches.push(secondLevelComparisonCities[i][0]);
+        }
+    }
+    console.log(secondLevelComparisonCities)
+    console.log(bestMatches)
+    return bestMatches[0];
 }
 
-const compareUserinputAndCityName = (userInputHashMap, cityNameHashMap) => {
-    let identicalProperties = true;
+const firstLevelComparison = (userInputHashMap, cityNameHashMap) => {
+    let NumLettersWithNoMatch = 0;
     let numOfDifferentFrequencyLetters = 0;
-    let numOfDifferentObjectKeys = Math.abs(Object.keys(userInputHashMap).length - Object.keys(cityNameHashMap).length); 
-    for(let property in userInputHashMap) {
-        if(!(cityNameHashMap.hasOwnProperty(property))) {
-            identicalProperties = false;
+    for (let property in userInputHashMap) {
+        if (!(cityNameHashMap.hasOwnProperty(property))) {
+            NumLettersWithNoMatch++;
         }
         else {
-            if(userInputHashMap[property]!==cityNameHashMap[property]) {
+            if (userInputHashMap[property] !== cityNameHashMap[property]) {
                 numOfDifferentFrequencyLetters++;
             }
         }
     }
+    for (let property in cityNameHashMap) {
+        if (!(userInputHashMap.hasOwnProperty(property))) {
+            NumLettersWithNoMatch++;
+        }
+    }
 
-    if(identicalProperties && numOfDifferentFrequencyLetters===0 && numOfDifferentObjectKeys===0) {
-        return 5 //"identical"
+    if ((!NumLettersWithNoMatch && !numOfDifferentFrequencyLetters) || (NumLettersWithNoMatch < 2 && numOfDifferentFrequencyLetters < 2)
+    || (NumLettersWithNoMatch < 3 && numOfDifferentFrequencyLetters < 1)) {
+        return 1;
     }
-    else if(identicalProperties && numOfDifferentFrequencyLetters < 3 && numOfDifferentObjectKeys < 3) {
-        console.log(numOfDifferentObjectKeys)
-        return 4 //"almost-identical"
+}
+
+const secondLevelComparison = (currCity, input) => {
+    let firstComaprison = "";
+    let secondComparison = "";
+    let tempCity = currCity;
+    for(let i=0; i<currCity.length; i++) {
+        if(input.includes(tempCity)) {
+            firstComaprison = tempCity;
+            break;
+        }
+        else {
+            tempCity = tempCity.slice(1);
+        }
     }
-    else if(identicalProperties && numOfDifferentObjectKeys < 2) {
-        return 3 //"minor-difference"
+
+    tempCity = currCity;
+    for(let i=0; i<currCity.length; i++) {
+        if(input.includes(tempCity)) {
+            secondComparison = tempCity;
+            break;
+        }
+        else {
+            tempCity = tempCity.slice(0,-1);
+        }
     }
-    else if(identicalProperties && numOfDifferentFrequencyLetters < 2 && numOfDifferentObjectKeys < 2) {
-        return 2 //"small-difference"
-    }
-    else if(!identicalProperties && numOfDifferentFrequencyLetters > 2) {
-        return 1 //"big-difference";
-    }
+    return firstComaprison.length > secondComparison.length ? [currCity,firstComaprison] : [currCity,secondComparison];
 }
 
 
 const returnCharFreqHashmap = (str) => {
     const hashmap = {};
 
-    for(let i=0; i<str.length; i++) {
+    for (let i = 0; i < str.length; i++) {
         hashmap.hasOwnProperty(str[i]) ? hashmap[str[i]]++ : hashmap[str[i]] = 1;
     }
     return hashmap;
-}
-
-const isCurrentAccuracyGreater = (prevAccuracy, currentAccuracy) => {
-    if(prevAccuracy < currentAccuracy) {
-        return true
-    }
-    return false
 }
 
 

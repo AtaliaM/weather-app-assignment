@@ -16,6 +16,10 @@
     text-align: center;
 }
 
+.ui.active.centered.inline.loader {
+    margin: 20px auto;
+}
+
 @media only screen and (max-width: 768px) { 
     .ui.fluid.action.input {
         display: flex;

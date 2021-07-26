@@ -10,13 +10,14 @@ function InputField(props) {
 
     const [term, setTerm] = useState("");
     const [noResultsFound, setNoResultsFound] = useState(false);
+    const [showLoader, setShowLoader] = useState(false);
 
     const onTermSubmit = async () => {
+        setShowLoader(true);
         try {
             const inputCheckResult = userInputCheck(term);
             if (inputCheckResult) {
                 const res = await weather.get(`search/?query=${inputCheckResult}`);
-                console.log(res.data)
                 if (res.data.length !== 0) {
                     props.chooseCity(res.data[0])
                     setNoResultsFound(false);
@@ -26,11 +27,8 @@ function InputField(props) {
                     props.fetchWeather(null);
                     props.chooseCity(null);
                 }
-
             }
-            //if term returns one city- pass the city to our action creator 'chooseCity',
-            //if there are user typos, check for match within cities dataset,
-            //if multiple cities returned, 
+            setShowLoader(false);
         } catch (e) {
             console.log(e);
         }
@@ -52,6 +50,9 @@ function InputField(props) {
             {noResultsFound ?
                 <h4 className="no-results-msg">Sorry, no results found for this location</h4>
                 : null}
+            {showLoader ? 
+                <div class="ui active centered inline loader"/>
+                :null}
         </div>
     )
 }
