@@ -61,7 +61,6 @@ const mapStateToProps = (state) => {
     console.log(state)
     return ({
         chosenCity: state.chosenCity,
-        cities: state.cities
     })
 }
 
