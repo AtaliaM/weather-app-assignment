@@ -32,6 +32,7 @@ const userInputCheck = (input) => {
     }
 
     //third level check//
+    //checking longest substring && comparing the city with longest substring length to user input length
     for(let i=0; i<secondLevelComparisonCities.length; i++) {
         if(secondLevelComparisonCities[i][1].length > largestSubstringLen[0]) {
             largestSubstringLen[0] = secondLevelComparisonCities[i][1].length;
@@ -39,7 +40,8 @@ const userInputCheck = (input) => {
             bestMatches.length = 0;
             bestMatches.push(secondLevelComparisonCities[i][0]);
         }
-        else if(secondLevelComparisonCities[i][1].length===largestSubstringLen[0]) {
+        else if(secondLevelComparisonCities[i][1].length===largestSubstringLen[0] && secondLevelComparisonCities[i][0].length===input.length) {
+            bestMatches.length = 0;
             bestMatches.push(secondLevelComparisonCities[i][0]);
         }
     }
@@ -109,6 +111,5 @@ const returnCharFreqHashmap = (str) => {
     }
     return hashmap;
 }
-
 
 export default userInputCheck;
