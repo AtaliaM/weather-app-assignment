@@ -44,11 +44,11 @@ function InputField(props) {
         <div className="input-container">
             <div className="ui fluid action input left icon">
                 <i className="search icon"></i>
-                <input type="text" placeholder="Search City" onKeyPress={(e) => onKeySubmit(e)} onChange={(e) => setTerm(e.target.value)} />
-                <button className="ui button searchbtn" onClick={() => onTermSubmit()}>Search</button>
+                <input data-testid="search-field" type="text" placeholder="Search City" onKeyPress={(e) => onKeySubmit(e)} onChange={(e) => setTerm(e.target.value)} />
+                <button data-testid="search-btn" className="ui button searchbtn" onClick={() => onTermSubmit()}>Search</button>
             </div>
             {noResultsFound ?
-                <h4 className="no-results-msg">Sorry, no results found for this location</h4>
+                <h4 className="no-results-msg" data-testid="not-found-msg">Sorry, no results found for this location</h4>
                 : null}
             {showLoader ? 
                 <div class="ui active centered inline loader"/>

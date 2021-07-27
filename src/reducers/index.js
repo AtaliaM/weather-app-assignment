@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-const chosenCityReducer = (chosenCity = null, action) => {
+export const chosenCityReducer = (chosenCity = null, action) => {
     if(action.type === 'CITY_CHOSEN') {
         return action.payload;
     }
@@ -8,7 +8,7 @@ const chosenCityReducer = (chosenCity = null, action) => {
     return chosenCity
 }
 
-const chosenCityWeatherReducer = (weather=null, action) => {
+export const chosenCityWeatherReducer = (weather=null, action) => {
     if(action.type === 'WEATHER_FETCHED') {
         return action.payload;
     }
