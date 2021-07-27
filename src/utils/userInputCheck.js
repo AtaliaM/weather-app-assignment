@@ -6,12 +6,24 @@ const userInputCheck = (input) => {
     }
     input = input.toLowerCase().trim().replace(/\s+/g, '').replace(/[^a-zA-Z]/g, '');
     const inputHashMap = returnCharFreqHashmap(input);
-    let firstLevelResultCities = [];
-    let secondLevelResultCities = [];
-    let largestSubstringLen = [0,""];
-    let bestMatches = [];
-
     //first level check//
+    const firstLevelResults = runFirstLevelCheck(input, inputHashMap);
+    if (typeof firstLevelResults === 'string') {
+        return firstLevelResults;
+    }
+     
+    //second level check//
+    const secondLevelResults = runSecondLevelCheck(input, firstLevelResults);
+    
+    //third level check//
+    //checking longest substring && comparing the city with longest substring length to user input length
+    const thirdLevelResults = runThirdLevelCheck(input, secondLevelResults);
+   
+    return thirdLevelResults;
+}
+
+const runFirstLevelCheck = (input,inputHashMap) => {
+    let firstLevelResultCities = [];
     for (let city in cities) {
         const tempCity = city.toLowerCase().replace(/\s+/g, '');
         const currentCityHashMap = returnCharFreqHashmap(tempCity);
@@ -19,34 +31,40 @@ const userInputCheck = (input) => {
         if (tempCity === input) {
             return city
         }
-
         const firstLevelComparisonResult = firstLevelComparison(inputHashMap, currentCityHashMap);
         if (firstLevelComparisonResult) {
             firstLevelResultCities.push(tempCity)
         }
     }
+    
+    return firstLevelResultCities
+}
 
-    //second level check//
-    for (let i = 0; i < firstLevelResultCities.length; i++) {
-        secondLevelResultCities.push(secondLevelComparison(firstLevelResultCities[i], input))
+const runSecondLevelCheck = (input, firstLevelResults) => {
+    let secondLevelResultCities = [];
+    for (let i = 0; i < firstLevelResults.length; i++) {
+        secondLevelResultCities.push(secondLevelComparison(firstLevelResults[i], input))
+    }
+    return secondLevelResultCities;
+}
+
+const runThirdLevelCheck = (input,secondLevelResults) => {
+    let largestSubstringLen = [0,""];
+    let bestMatches = [];
+
+    for(let i=0; i<secondLevelResults.length; i++) {
+        if(secondLevelResults[i][1].length > largestSubstringLen[0]) {
+            largestSubstringLen[0] = secondLevelResults[i][1].length;
+            largestSubstringLen[1] = secondLevelResults[i][0];
+            bestMatches.length = 0;
+            bestMatches.push(secondLevelResults[i][0]);
+        }
+        else if(secondLevelResults[i][1].length===largestSubstringLen[0] && secondLevelResults[i][0].length===input.length) {
+            bestMatches.length = 0;
+            bestMatches.push(secondLevelResults[i][0]);
+        }
     }
 
-    //third level check//
-    //checking longest substring && comparing the city with longest substring length to user input length
-    for(let i=0; i<secondLevelResultCities.length; i++) {
-        if(secondLevelResultCities[i][1].length > largestSubstringLen[0]) {
-            largestSubstringLen[0] = secondLevelResultCities[i][1].length;
-            largestSubstringLen[1] = secondLevelResultCities[i][0];
-            bestMatches.length = 0;
-            bestMatches.push(secondLevelResultCities[i][0]);
-        }
-        else if(secondLevelResultCities[i][1].length===largestSubstringLen[0] && secondLevelResultCities[i][0].length===input.length) {
-            bestMatches.length = 0;
-            bestMatches.push(secondLevelResultCities[i][0]);
-        }
-    }
-    console.log(secondLevelResultCities)
-    console.log(bestMatches)
     return bestMatches[0];
 }
 
