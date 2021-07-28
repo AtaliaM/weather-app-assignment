@@ -11,7 +11,7 @@ const userInputCheck = (input) => {
     if (typeof firstLevelResults === 'string') {
         return firstLevelResults;
     }
-    // console.log(firstLevelResults)
+    console.log(firstLevelResults)
      
     //second level check//
     const secondLevelResults = runSecondLevelCheck(input, firstLevelResults);
@@ -19,7 +19,7 @@ const userInputCheck = (input) => {
     
     //third level check//
     //checking longest substring && comparing the city with longest substring length to user input length
-    const thirdLevelResults = runThirdLevelCheck(input, secondLevelResults);
+    const thirdLevelResults = runThirdLevelCheck(secondLevelResults);
     if(thirdLevelResults.length===1) {
         return thirdLevelResults[0];
     }
@@ -53,7 +53,7 @@ const runSecondLevelCheck = (input, firstLevelResults) => {
     return secondLevelResultCities;
 }
 
-const runThirdLevelCheck = (input,secondLevelResults) => {
+const runThirdLevelCheck = (secondLevelResults) => {
     let largestSubstringLen = [0,""];
     let bestMatches = [];
 
@@ -64,21 +64,22 @@ const runThirdLevelCheck = (input,secondLevelResults) => {
             bestMatches.length = 0;
             bestMatches.push(secondLevelResults[i][0]);
         }
-        else if(secondLevelResults[i][1].length===largestSubstringLen[0] && secondLevelResults[i][0].length===input.length) {
-            // bestMatches.length = 0;
+        else if(secondLevelResults[i][1].length===largestSubstringLen[0]) {
             bestMatches.push(secondLevelResults[i][0]);
         }
     }
-console.log(bestMatches)
+// console.log(bestMatches)
     return bestMatches;
 }
 
 const firstLevelComparison = (userInputHashMap, cityNameHashMap) => {
-    let NumLettersWithNoMatch = 0;
+    let numLettersWithNoMatch = 0;
     let numOfDifferentFrequencyLetters = 0;
+    let minimunLetterswithNoMatch = [2,3];
+    let minimumDifferentFreqLetters = [1,2];
     for (let property in userInputHashMap) {
         if (!(cityNameHashMap.hasOwnProperty(property))) {
-            NumLettersWithNoMatch++;
+            numLettersWithNoMatch++;
         }
         else {
             if (userInputHashMap[property] !== cityNameHashMap[property]) {
@@ -88,12 +89,13 @@ const firstLevelComparison = (userInputHashMap, cityNameHashMap) => {
     }
     for (let property in cityNameHashMap) {
         if (!(userInputHashMap.hasOwnProperty(property))) {
-            NumLettersWithNoMatch++;
+            numLettersWithNoMatch++;
         }
     }
 
-    if ((!NumLettersWithNoMatch && !numOfDifferentFrequencyLetters) || (NumLettersWithNoMatch < 2 && numOfDifferentFrequencyLetters < 2)
-    || (NumLettersWithNoMatch < 3 && numOfDifferentFrequencyLetters < 1)) {
+    if ((!numLettersWithNoMatch && !numOfDifferentFrequencyLetters) || 
+    (numLettersWithNoMatch < minimunLetterswithNoMatch[0] && numOfDifferentFrequencyLetters < minimumDifferentFreqLetters[1])
+    || (numLettersWithNoMatch < minimunLetterswithNoMatch[1] && numOfDifferentFrequencyLetters < minimumDifferentFreqLetters[0])) {
         return 1;
     }
 }
@@ -111,7 +113,6 @@ const secondLevelComparison = (currCity, input) => {
             tempCity = tempCity.slice(1);
         }
     }
-
     tempCity = currCity;
     for(let i=0; i<currCity.length; i++) {
         if(input.includes(tempCity)) {
