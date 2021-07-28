@@ -1,5 +1,5 @@
 # ❄️ Weather App ☀️
-A weather application built with React and Redux, that shows the weather forecast for any (available) city around the world by consuming Metaweather API.
+A weather application built with React (with hooks) and Redux, that shows the weather forecast for any (available) city around the world by consuming Metaweather API.
 
 ## npm run start
 Runs the app in the development mode.
