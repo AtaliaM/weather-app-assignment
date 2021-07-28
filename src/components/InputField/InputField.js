@@ -36,6 +36,8 @@ function InputField(props) {
             }
             else {
                 setSuggestionsList(inputCheckResult);
+                props.fetchWeather(null);
+                props.chooseCity(null);
                 setShowSuggestionsList(true);
                 setNoResultsFound(false);
             }
@@ -53,14 +55,14 @@ function InputField(props) {
 
     const hideSuggestionList = (suggestionResponse) => {
         setShowSuggestionsList(false);
-        if(!suggestionResponse) {
+        if (!suggestionResponse) {
             setNoResultsFound(true);
         }
         else {
             setNoResultsFound(false);
         }
     }
-    
+
     return (
         <div className="input-container">
             <div className="ui fluid action input left icon">
@@ -71,11 +73,11 @@ function InputField(props) {
             {noResultsFound ?
                 <h4 className="no-results-msg" data-testid="not-found-msg">Sorry, no results found for this location</h4>
                 : null}
-            {showLoader ? 
-                <div class="ui active centered inline loader"/>
-                :null}
-                {showSuggestionsList ?
-                <SearchSuggestions suggestions={suggestionsList} hideSuggestions = {hideSuggestionList}/>:
+            {showLoader ?
+                <div class="ui active centered inline loader" />
+                : null}
+            {showSuggestionsList ?
+                <SearchSuggestions suggestions={suggestionsList} hideSuggestions={hideSuggestionList} /> :
                 null}
         </div>
     )
