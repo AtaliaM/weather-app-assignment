@@ -49,31 +49,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(ExtendedForecast);
-
-// const temp = [
-//     {
-//         "weather_state_name": "Light Rain",
-//         "weather_state_abbr": "lr",
-//         "applicable_date": "2021-07-24",
-//         "min_temp": 15.765,
-//         "max_temp": 20.29,
-//         "wind_speed": 6.184855278467086,
-//         "humidity": 87,
-//     },
-//     {
-//         "weather_state_name": "Heavy Rain",
-//         "weather_state_abbr": "hr",
-//         "applicable_date": "2021-07-25",
-//         "min_temp": 15.68,
-//         "max_temp": 20.994999999999997,
-//         "humidity": 81,
-//     },
-//     {
-//         "weather_state_name": "Light Rain",
-//         "weather_state_abbr": "lr",
-//         "applicable_date": "2021-07-26",
-//         "min_temp": 16.41,
-//         "max_temp": 25.729999999999997,
-//         "humidity": 61,
-//     }
-// ]

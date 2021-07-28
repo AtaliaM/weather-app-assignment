@@ -62,12 +62,3 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     fetchWeather
 })(CurrentWeather);
-
-// const temp = {
-//     "weather_state_name": "Clear",
-//     "weather_state_abbr": "c",
-//     "min_temp": 17.785,
-//     "max_temp": 28.685000000000002,
-//     "humidity": 54,
-
-// }
