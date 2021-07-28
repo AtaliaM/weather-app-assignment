@@ -85,7 +85,6 @@ function InputField(props) {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return ({
         chosenCity: state.chosenCity,
     })
