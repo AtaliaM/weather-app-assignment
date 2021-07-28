@@ -6,5 +6,5 @@ Runs the app in the development mode.
 Open http://localhost:3000 to view it in the browser.
 The page will reload if you make edits.
 
-Please visit https://atalia-weather-app.netlify.app/ to view the deployed app.
+### Please visit https://atalia-weather-app.netlify.app/ to view the deployed app.
 
