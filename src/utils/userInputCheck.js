@@ -20,6 +20,9 @@ const userInputCheck = (input) => {
     //third level check//
     //checking longest substring && comparing the city with longest substring length to user input length
     const thirdLevelResults = runThirdLevelCheck(input, secondLevelResults);
+    if(thirdLevelResults.length===1) {
+        return thirdLevelResults[0];
+    }
    
     return thirdLevelResults;
 }
