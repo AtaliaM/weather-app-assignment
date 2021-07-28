@@ -11,7 +11,7 @@ const userInputCheck = (input) => {
     if (typeof firstLevelResults === 'string') {
         return firstLevelResults;
     }
-    console.log(firstLevelResults)
+    // console.log(firstLevelResults)
      
     //second level check//
     const secondLevelResults = runSecondLevelCheck(input, firstLevelResults);

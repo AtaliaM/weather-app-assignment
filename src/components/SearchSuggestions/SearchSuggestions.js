@@ -24,6 +24,7 @@ function SearchSuggestions(props) {
 
     return (
         <div>
+        <h4 className="suggestions-h">Click your selection</h4>
             {props.suggestions.map((suggestion) => {
                 return (
                     <div className="suggestion">

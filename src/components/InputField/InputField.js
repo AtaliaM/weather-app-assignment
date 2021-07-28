@@ -30,6 +30,7 @@ function InputField(props) {
                 }
                 else {
                     setNoResultsFound(true);
+                    setShowSuggestionsList(false);
                     props.fetchWeather(null);
                     props.chooseCity(null);
                 }

@@ -3,6 +3,12 @@
     margin: 15px;
 }
 
+h4.suggestions-h {
+    text-align: center;
+    margin: 15px;
+    color: #697274;
+}
+
 .suggestion-btn {
     background: none;
     border: none;
