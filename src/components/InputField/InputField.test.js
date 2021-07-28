@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import InputField from './InputField';
 import configureStore from 'redux-mock-store';
 import userEvent from '@testing-library/user-event';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { chosenCityReducer, chosenCityWeatherReducer } from '../../reducers';
 
 describe("<InputField />", () => {
