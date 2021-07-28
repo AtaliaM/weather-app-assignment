@@ -1,32 +1,43 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { connect } from 'react-redux';
 import weather from '../../apis/weather';
 import { chooseCity, fetchWeather } from '../../actions';
 import userInputCheck from '../../utils/userInputCheck';
 import './InputField.css';
+import SearchSuggestions from '../SearchSuggestions/SearchSuggestions';
 
 function InputField(props) {
 
     const [term, setTerm] = useState("");
     const [noResultsFound, setNoResultsFound] = useState(false);
     const [showLoader, setShowLoader] = useState(false);
+    const [suggestionsList, setSuggestionsList] = useState([]);
+    const [showSuggestionsList, setShowSuggestionsList] = useState(false);
 
     const onTermSubmit = async () => {
         setShowLoader(true);
         try {
             const inputCheckResult = userInputCheck(term);
-            if (inputCheckResult) {
+            console.log(inputCheckResult)
+            if (!Array.isArray(inputCheckResult)) {
                 const res = await weather.get(`search/?query=${inputCheckResult}`);
                 if (res.data.length !== 0) {
                     props.chooseCity(res.data[0])
+                    setSuggestionsList([]);
                     setNoResultsFound(false);
+                    setShowSuggestionsList(false);
                 }
                 else {
                     setNoResultsFound(true);
                     props.fetchWeather(null);
                     props.chooseCity(null);
                 }
+            }
+            else {
+                setSuggestionsList(inputCheckResult);
+                setShowSuggestionsList(true);
+                setNoResultsFound(false);
             }
             setShowLoader(false);
         } catch (e) {
@@ -40,6 +51,16 @@ function InputField(props) {
         }
     }
 
+    const hideSuggestionList = (suggestionResponse) => {
+        setShowSuggestionsList(false);
+        if(!suggestionResponse) {
+            setNoResultsFound(true);
+        }
+        else {
+            setNoResultsFound(false);
+        }
+    }
+    
     return (
         <div className="input-container">
             <div className="ui fluid action input left icon">
@@ -53,6 +74,9 @@ function InputField(props) {
             {showLoader ? 
                 <div class="ui active centered inline loader"/>
                 :null}
+                {showSuggestionsList ?
+                <SearchSuggestions suggestions={suggestionsList} hideSuggestions = {hideSuggestionList}/>:
+                null}
         </div>
     )
 }

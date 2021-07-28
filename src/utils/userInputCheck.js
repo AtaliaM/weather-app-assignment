@@ -11,9 +11,11 @@ const userInputCheck = (input) => {
     if (typeof firstLevelResults === 'string') {
         return firstLevelResults;
     }
+    console.log(firstLevelResults)
      
     //second level check//
     const secondLevelResults = runSecondLevelCheck(input, firstLevelResults);
+    console.log(secondLevelResults)
     
     //third level check//
     //checking longest substring && comparing the city with longest substring length to user input length
@@ -60,12 +62,12 @@ const runThirdLevelCheck = (input,secondLevelResults) => {
             bestMatches.push(secondLevelResults[i][0]);
         }
         else if(secondLevelResults[i][1].length===largestSubstringLen[0] && secondLevelResults[i][0].length===input.length) {
-            bestMatches.length = 0;
+            // bestMatches.length = 0;
             bestMatches.push(secondLevelResults[i][0]);
         }
     }
-
-    return bestMatches[0];
+console.log(bestMatches)
+    return bestMatches;
 }
 
 const firstLevelComparison = (userInputHashMap, cityNameHashMap) => {

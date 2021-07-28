@@ -1,0 +1,15 @@
+.suggestion {
+    text-align: center;
+    margin: 15px;
+}
+
+.suggestion-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.suggestion-btn:hover {
+    color: #206675;
+}
