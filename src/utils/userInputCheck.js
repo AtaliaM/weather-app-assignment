@@ -11,19 +11,17 @@ const userInputCheck = (input) => {
     if (typeof firstLevelResults === 'string') {
         return firstLevelResults;
     }
-    console.log(firstLevelResults)
+    // console.log(firstLevelResults)
      
     //second level check//
     const secondLevelResults = runSecondLevelCheck(input, firstLevelResults);
-    console.log(secondLevelResults)
+    // console.log(secondLevelResults)
     
-    //third level check//
-    //checking longest substring && comparing the city with longest substring length to user input length
+    //third level check// //checking longest substring 
     const thirdLevelResults = runThirdLevelCheck(secondLevelResults);
     if(thirdLevelResults.length===1) {
         return thirdLevelResults[0];
     }
-   
     return thirdLevelResults;
 }
 
@@ -41,7 +39,6 @@ const runFirstLevelCheck = (input,inputHashMap) => {
             firstLevelResultCities.push(tempCity)
         }
     }
-    
     return firstLevelResultCities
 }
 
@@ -68,7 +65,6 @@ const runThirdLevelCheck = (secondLevelResults) => {
             bestMatches.push(secondLevelResults[i][0]);
         }
     }
-// console.log(bestMatches)
     return bestMatches;
 }
 
@@ -129,7 +125,6 @@ const secondLevelComparison = (currCity, input) => {
 
 const returnCharFreqHashmap = (str) => {
     const hashmap = {};
-
     for (let i = 0; i < str.length; i++) {
         hashmap.hasOwnProperty(str[i]) ? hashmap[str[i]]++ : hashmap[str[i]] = 1;
     }
