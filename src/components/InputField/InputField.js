@@ -74,7 +74,7 @@ function InputField(props) {
                 <h4 className="no-results-msg" data-testid="not-found-msg">Sorry, no results found for this location</h4>
                 : null}
             {showLoader ?
-                <div class="ui active centered inline loader" />
+                <div className="ui active centered inline loader" />
                 : null}
             {showSuggestionsList ?
                 <SearchSuggestions suggestions={suggestionsList} hideSuggestions={hideSuggestionList} /> :

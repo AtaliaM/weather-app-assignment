@@ -27,7 +27,7 @@ function SearchSuggestions(props) {
         <h4 className="suggestions-h">Click your selection</h4>
             {props.suggestions.map((suggestion) => {
                 return (
-                    <div className="suggestion">
+                    <div className="suggestion" key={suggestion}>
                         <span>Did you mean</span>
                         <button className="suggestion-btn" onClick={() => onSuggestionSubmit(suggestion)}>{suggestion}?</button>
                     </div>
