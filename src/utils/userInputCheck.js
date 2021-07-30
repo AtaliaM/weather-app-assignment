@@ -1,10 +1,10 @@
 const cities = require("cities-list");
 
 const userInputCheck = (input) => {
+    input = input.toLowerCase().trim().replace(/\s+/g, '').replace(/[^a-zA-Z]/g, '');
     if (!input.length) {
         return false
     }
-    input = input.toLowerCase().trim().replace(/\s+/g, '').replace(/[^a-zA-Z]/g, '');
     const inputHashMap = returnCharFreqHashmap(input);
     //first level check//
     const firstLevelResults = runFirstLevelCheck(input, inputHashMap);

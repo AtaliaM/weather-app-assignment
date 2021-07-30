@@ -6,8 +6,8 @@ import App from './App';
 import { createStore } from 'redux';
 import reducers from '../../reducers/index'
 
-
 describe('<App/>', ()=> {
+
   test('renders Weather App header', () => {
     render(<Provider store={createStore(reducers)}><App/></Provider>);
     const linkElement = screen.getByText(/Weather App/i);
@@ -19,5 +19,4 @@ describe('<App/>', ()=> {
     ReactDOM.render(<Provider store={createStore(reducers)}><App/></Provider>, div)
     ReactDOM.unmountComponentAtNode(div);
   })
-
 })

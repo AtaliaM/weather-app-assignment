@@ -4,6 +4,7 @@ import InputField from './InputField';
 import configureStore from 'redux-mock-store';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
+// import TestRenderer from 'react-test-renderer';
 import { chosenCityReducer, chosenCityWeatherReducer } from '../../reducers';
 
 describe("<InputField />", () => {
@@ -25,7 +26,7 @@ describe("<InputField />", () => {
         )
     }
 
-    it('should render with given state from Redux store', () => {
+    it('should render without crashing', () => {
         expect(renderComponent()).toMatchSnapshot();
     });
 
@@ -44,5 +45,7 @@ describe("<InputField />", () => {
       userEvent.type(inputEl, "paris");
       expect(screen.getByTestId("search-field")).toHaveValue("paris");
     });
+
+    
 
 });

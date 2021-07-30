@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<InputField /> should render with given state from Redux store 1`] = `
+exports[`<InputField /> should render without crashing 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
