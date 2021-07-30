@@ -1,36 +1,47 @@
+import c from './c.svg';
+import h from './h.svg';
+import hc from './hc.svg';
+import hr from './hr.svg';
+import lc from './lc.svg';
+import lr from './lr.svg';
+import s from './s.svg';
+import sl from './sl.svg';
+import sn from './sn.svg';
+import t from './t.svg';
+
 const returnCurrentWeatherIcon = (weather_state_abbr) => {
-    let baseUrl = "https://www.metaweather.com/static/img/weather"
+    // let baseUrl = "https://www.metaweather.com/static/img/weather"
     let icon;
     switch (weather_state_abbr) {
         case "sn":
-          icon = baseUrl+"/sn.svg";
+          icon = sn;
           break;
         case "sl":
-          icon = baseUrl+"/sl.svg";
+          icon = sl;
           break;
         case "h":
-           icon = baseUrl+"/h.svg";
+           icon = h;
           break;
         case "t":
-          icon = baseUrl+"/t.svg";
+          icon = t;
           break;
         case "hr":
-          icon = baseUrl+"/hr.svg";
+          icon = hr;
           break;
         case "lr":
-          icon = baseUrl+"/lr.svg";
+          icon = lr;
           break;
         case "s":
-          icon = baseUrl+"/s.svg";
+          icon = s;
           break;
         case "hc":
-          icon = baseUrl+"/hc.svg";
+          icon = hc;
           break;
         case "lc":
-          icon = baseUrl+"/lc.svg";
+          icon = lc;
           break;
           default:
-              icon = baseUrl+"/c.svg";
+              icon = c;
       }
 
       return icon;
