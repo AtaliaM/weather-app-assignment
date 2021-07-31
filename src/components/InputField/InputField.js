@@ -19,7 +19,7 @@ function InputField(props) {
         setShowLoader(true);
         try {
             const inputCheckResult = userInputCheck(term);
-            if (!Array.isArray(inputCheckResult)) {
+            if (!Array.isArray(inputCheckResult)&&inputCheckResult) {
                 const res = await weather.get(`search/?query=${inputCheckResult}`);
                 if (res.data.length !== 0) {
                     props.chooseCity(res.data[0])
@@ -34,6 +34,7 @@ function InputField(props) {
                     props.chooseCity(null);
                 }
             }
+            else if(!inputCheckResult) {}
             else {
                 setSuggestionsList(inputCheckResult);
                 props.fetchWeather(null);
